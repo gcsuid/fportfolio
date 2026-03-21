@@ -277,13 +277,13 @@
 }
 
 .portfolio-main {
-  padding: 8rem 2rem 0;
+  padding: 6rem 2rem 0;
 }
 
 .hero-section {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   justify-content: space-between;
 }
 
@@ -336,44 +336,54 @@
 }
 
 .orbit-anchor {
-  display: none;
-  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding-bottom: 1rem;
+  gap: 1rem;
 }
 
 .orbit-container {
   position: relative;
-  width: 12.5rem;
-  height: 12.5rem;
+  width: 16rem;
+  height: 16rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .sun {
-  width: 2rem;
-  height: 2rem;
+  width: 2.8rem;
+  height: 2.8rem;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.4);
 }
 
 .earth {
   position: absolute;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 1.15rem;
+  height: 1.15rem;
   background: #919191;
   border-radius: 50%;
   animation: orbit 8s linear infinite;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
 }
 
 .orbit-path {
   position: absolute;
-  width: 10rem;
-  height: 10rem;
+  width: 13rem;
+  height: 13rem;
   border: 1px dashed rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+}
+
+.orbit-age {
+  margin: 0;
+  color: #c6c6c6;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .content-grid {
@@ -655,11 +665,11 @@
 
 @keyframes orbit {
   from {
-    transform: rotate(0deg) translateX(80px) rotate(0deg);
+    transform: rotate(0deg) translateX(104px) rotate(0deg);
   }
 
   to {
-    transform: rotate(360deg) translateX(80px) rotate(-360deg);
+    transform: rotate(360deg) translateX(104px) rotate(-360deg);
   }
 }
 
@@ -674,16 +684,12 @@
   }
 
   .portfolio-main {
-    padding-top: 10rem;
+    padding-top: 7.5rem;
   }
 
   .hero-section {
     flex-direction: row;
-    align-items: flex-end;
-  }
-
-  .orbit-anchor {
-    display: flex;
+    align-items: center;
   }
 
   .content-grid {
@@ -716,6 +722,26 @@
 
   .hero-copy h1 {
     font-size: clamp(3.2rem, 18vw, 4.6rem);
+  }
+
+  .orbit-container {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .orbit-path {
+    width: 9.5rem;
+    height: 9.5rem;
+  }
+
+  .sun {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .earth {
+    width: 0.95rem;
+    height: 0.95rem;
   }
 
   .technical-grid {

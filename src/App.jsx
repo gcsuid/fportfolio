@@ -40,6 +40,15 @@ const technicalSkills = {
   Other: ['Redis', 'gRPC', 'Python', 'Framer Motion'],
 }
 
+const BIRTH_DATE = new Date('2004-03-24T00:00:00+05:30')
+
+function getAgeInYears() {
+  const elapsedMs = Date.now() - BIRTH_DATE.getTime()
+  const yearMs = 365.2425 * 24 * 60 * 60 * 1000
+
+  return elapsedMs / yearMs
+}
+
 function Preloader() {
   const [progress, setProgress] = useState(0)
 
@@ -123,6 +132,18 @@ function Preloader() {
 }
 
 function PortfolioPage() {
+  const [ageYears, setAgeYears] = useState(() => getAgeInYears())
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setAgeYears(getAgeInYears())
+    }, 100)
+
+    return () => {
+      window.clearInterval(intervalId)
+    }
+  }, [])
+
   return (
     <div className="portfolio-page">
       <nav className="top-nav">
@@ -136,9 +157,6 @@ function PortfolioPage() {
             </a>
             <a className="top-nav__link" href="#skills">
               skills
-            </a>
-            <a className="top-nav__link" href="#contact">
-              contact
             </a>
           </div>
           <button className="icon-button" aria-label="Theme toggle">
@@ -170,6 +188,7 @@ function PortfolioPage() {
               <div className="sun" />
               <div className="earth" />
             </div>
+            <p className="orbit-age">{ageYears.toFixed(9)} years alive</p>
           </div>
         </section>
 
@@ -289,7 +308,7 @@ function PortfolioPage() {
         </section>
       </main>
 
-      <footer className="portfolio-footer" id="contact">
+      <footer className="portfolio-footer">
         <div className="portfolio-footer__inner">
           <div className="portfolio-footer__credit">2024 built by curator.</div>
           <div className="portfolio-footer__links">
