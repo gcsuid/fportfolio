@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.preloader-screen,
+.portfolio-shell {
+  min-height: 100vh;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.09), transparent 28%),
+    linear-gradient(180deg, #050505 0%, #000 100%);
+  color: #e2e2e2;
+}
+
+.preloader-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.portrait-wrap {
+  position: relative;
+}
+
+.portrait-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(52px);
+}
+
+.portrait-shell {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+}
+
+.portrait-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.face-eyes {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  gap: 1.6rem;
+  transform: translateX(-50%);
+  opacity: 0.9;
+}
+
+.eye {
+  width: 1.1rem;
+  height: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+.eye::after {
+  content: '';
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  animation: eye-focus 3s ease-in-out infinite;
+}
+
+.loader-panel {
+  width: min(20rem, 100%);
+}
+
+.loader-terminal,
+.loader-meta,
+.preloader-brand,
+.status-pill,
+.portfolio-shell__eyebrow {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.28em;
+  text-transform: lowercase;
+}
+
+.loader-terminal {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: rgba(198, 198, 198, 0.8);
+  font-size: 0.7rem;
+}
+
+.cursor-blink {
+  width: 0.375rem;
+  height: 0.85rem;
+  margin-left: 0.35rem;
+  background: #fff;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.progress-track {
+  height: 1px;
+  overflow: hidden;
+  background: #353535;
+}
+
+.progress-fill {
+  height: 100%;
+  transform-origin: left center;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.loader-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  color: rgba(145, 145, 145, 0.65);
+  font-size: 0.65rem;
+}
+
+.loader-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+}
+
+.loader-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  animation: loader-pulse 0.8s ease-in-out infinite;
+}
+
+.loader-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.loader-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.preloader-brand {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  transform: translateX(-50%);
+  color: rgba(226, 226, 226, 0.2);
+  font-size: 0.7rem;
+}
+
+.preloader-brand__icon {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.status-pill {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  color: rgba(198, 198, 198, 0.6);
+  font-size: 0.65rem;
+}
+
+.status-pill__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.portfolio-shell {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.portfolio-shell h1 {
+  max-width: 10ch;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.6rem, 8vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.portfolio-shell__eyebrow {
+  margin: 0 0 1rem;
+  color: rgba(198, 198, 198, 0.6);
+  font-size: 0.7rem;
+}
+
+.portfolio-shell__copy {
+  width: min(34rem, 100%);
+  margin: 1.25rem auto 0;
+  color: rgba(226, 226, 226, 0.72);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes eye-focus {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-1px);
+  }
+
+  75% {
+    transform: translateX(1px);
+  }
+}
+
+@keyframes loader-pulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  50% {
+    transform: translateY(-4px) scale(1.2);
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+@media (min-width: 768px) {
+  .portrait-shell {
+    width: 16rem;
+    height: 16rem;
+  }
+
+  .loader-panel {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .preloader-screen {
+    padding: 1.5rem;
+  }
+
+  .status-pill {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .preloader-brand {
+    bottom: 2rem;
+  }
+}
