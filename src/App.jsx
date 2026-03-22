@@ -215,10 +215,6 @@ function PortfolioPage() {
       <main className="portfolio-main">
         <section className="hero-section">
           <div className="hero-copy">
-            <div className="hero-status">
-              <span className="hero-status__dot" />
-              <span>Status: Building in the dark</span>
-            </div>
             <h1>
               Howdy! Ayush
               <span>here.</span>
@@ -237,11 +233,8 @@ function PortfolioPage() {
                   <SocialIcon icon={social.icon} />
                 </a>
               ))}
+              <span className="hero-age">{ageYears.toFixed(9)} years alive</span>
             </div>
-            <p>
-              This place shall contact all the hyperlinks to various soc media
-              sites, all monochrome color
-            </p>
           </div>
 
           <div className="orbit-anchor" aria-hidden="true">
@@ -250,7 +243,6 @@ function PortfolioPage() {
               <div className="sun" />
               <div className="earth" />
             </div>
-            <p className="orbit-age">{ageYears.toFixed(9)} years alive</p>
           </div>
         </section>
 
@@ -261,36 +253,39 @@ function PortfolioPage() {
           <div className="about-content">
             <div className="about-copy">
               <p className="about-copy__lead">
-                i believe in the terminal as a tool and the canvas as a
-                gallery.
+                Fresh CS grad who believes working for impact is the only kind
+                of work worth doing.
               </p>
               <p className="about-copy__body">
-                my work sits at the intersection of high-performance
-                architecture and minimalist aesthetics. i strip away the noise
-                to leave only the functionality.
+                I've built AI tools at DRDO, led student communities, and
+                contributed to social entrepreneurship that reached underserved
+                communities. I bring both the technical depth and the
+                people-first mindset to back that up.
               </p>
             </div>
 
             <div className="about-cards">
               <article className="glass-card">
                 <span className="material-symbols-outlined card-icon">
-                  terminal
+                  school
                 </span>
-                <h3>engineering</h3>
+                <h3>education</h3>
                 <p>
-                  optimizing for latency and legibility. clean code is
-                  non-negotiable.
+                  KIIT University, 2026. Computer Science graduate with a
+                  strong base in full-stack engineering, applied AI, and
+                  building systems that solve real problems.
                 </p>
               </article>
 
               <article className="glass-card">
                 <span className="material-symbols-outlined card-icon">
-                  auto_awesome
+                  groups
                 </span>
-                <h3>curation</h3>
+                <h3>impact</h3>
                 <p>
-                  selecting the right stack for the right problem. no bloat,
-                  just intent.
+                  Through Enactus KIIT, I worked on social entrepreneurship
+                  initiatives focused on underserved communities and helped push
+                  ideas toward measurable, people-first impact.
                 </p>
               </article>
             </div>
