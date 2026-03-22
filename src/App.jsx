@@ -7,22 +7,43 @@ const projectCards = [
   {
     type: 'featured',
     index: '01 / Full-Stack',
-    title: 'the_monolith',
+    title: 'volops',
     description:
-      'A headless commerce engine built for high-scale luxury editorial brands.',
-    tags: ['rust', 'next.js'],
+      'Volunteer management platform with role-based auth, QR check-ins, geofencing, photo capture, and real-time org dashboards.',
+    tags: ['node.js', 'express', 'javascript'],
+    href: 'https://github.com/gcsuid/volops.git',
   },
   {
-    index: '02 / Tooling',
-    title: 'sh_script_clean',
+    index: '02 / AI / RAG',
+    title: 'document intelligence qna',
     description:
-      'CLI tool to sanitize and minify bash scripts for production environments.',
+      'RAG pipeline using LangChain, FAISS, Gemini API, and Streamlit for semantic document search and contextual answers.',
+    href: 'https://github.com/gcsuid/chatpdf',
   },
   {
-    index: '03 / UI Kit',
-    title: 'ghost_ui',
+    index: '03 / Practice Platform',
+    title: 'pracleecode',
     description:
-      'A collection of glassmorphic primitives for data-heavy dashboards.',
+      'DSA revision platform with spaced repetition, AI-assisted problem rephrasing, and automated approach grading.',
+    href: 'https://github.com/gcsuid/leetcode-prac',
+  },
+]
+
+const socialLinks = [
+  {
+    name: 'Email',
+    href: 'mailto:dasayush483@gmail.com',
+    icon: 'mail',
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/ayush-das24/',
+    icon: 'linkedin',
+  },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/gcsuid',
+    icon: 'github',
   },
 ]
 
@@ -131,6 +152,32 @@ function Preloader() {
   )
 }
 
+function SocialIcon({ icon }) {
+  if (icon === 'linkedin') {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12M5.59 9.66h2.71V18H5.59zm4.41 0h2.6v1.14h.04c.36-.69 1.25-1.41 2.58-1.41 2.75 0 3.26 1.81 3.26 4.17V18h-2.71v-3.92c0-.94-.02-2.14-1.3-2.14-1.31 0-1.52 1.02-1.52 2.08V18H10z"
+        />
+      </svg>
+    )
+  }
+
+  if (icon === 'github') {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.33-1.74-1.33-1.74-1.09-.75.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.08 1.84 2.82 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.23-3.24-.12-.3-.53-1.53.12-3.2 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.67.25 2.9.12 3.2.77.85 1.23 1.93 1.23 3.24 0 4.62-2.81 5.64-5.49 5.94.43.38.82 1.1.82 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5"
+        />
+      </svg>
+    )
+  }
+
+  return <span className="material-symbols-outlined">mail</span>
+}
+
 function PortfolioPage() {
   const [ageYears, setAgeYears] = useState(() => getAgeInYears())
 
@@ -176,6 +223,21 @@ function PortfolioPage() {
               Howdy! Ayush
               <span>here.</span>
             </h1>
+            <div className="hero-socials">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  className="hero-social"
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.name}
+                  title={social.name}
+                >
+                  <SocialIcon icon={social.icon} />
+                </a>
+              ))}
+            </div>
             <p>
               This place shall contact all the hyperlinks to various soc media
               sites, all monochrome color
@@ -241,8 +303,11 @@ function PortfolioPage() {
           </div>
           <div className="projects-grid">
             {projectCards.map((project) => (
-              <article
+              <a
                 key={project.title}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
                 className={`project-card${
                   project.type === 'featured' ? ' project-card--featured' : ''
                 }`}
@@ -267,7 +332,7 @@ function PortfolioPage() {
                     </div>
                   </>
                 ) : null}
-              </article>
+              </a>
             ))}
           </div>
         </section>
