@@ -180,6 +180,7 @@ function SocialIcon({ icon }) {
 
 function PortfolioPage() {
   const [ageYears, setAgeYears] = useState(() => getAgeInYears())
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -191,8 +192,10 @@ function PortfolioPage() {
     }
   }, [])
 
+  const isLightTheme = theme === 'light'
+
   return (
-    <div className="portfolio-page">
+    <div className={`portfolio-page theme-${theme}`}>
       <nav className="top-nav">
         <div className="top-nav__inner">
           <div className="top-nav__links">
@@ -206,8 +209,19 @@ function PortfolioPage() {
               skills
             </a>
           </div>
-          <button className="icon-button" aria-label="Theme toggle">
-            <span className="material-symbols-outlined">wb_sunny</span>
+          <button
+            className="icon-button"
+            aria-label={`Switch to ${isLightTheme ? 'dark' : 'light'} theme`}
+            onClick={() =>
+              setTheme((currentTheme) =>
+                currentTheme === 'dark' ? 'light' : 'dark',
+              )
+            }
+            type="button"
+          >
+            <span className="material-symbols-outlined">
+              {isLightTheme ? 'dark_mode' : 'wb_sunny'}
+            </span>
           </button>
         </div>
       </nav>
@@ -216,7 +230,7 @@ function PortfolioPage() {
         <section className="hero-section">
           <div className="hero-copy">
             <h1>
-              Howdy! Ayush
+              Howdy! <span className="hero-name-accent">Ayush</span>
               <span>here.</span>
             </h1>
             <div className="hero-socials">
@@ -233,7 +247,6 @@ function PortfolioPage() {
                   <SocialIcon icon={social.icon} />
                 </a>
               ))}
-              <span className="hero-age">{ageYears.toFixed(9)} years alive</span>
             </div>
           </div>
 
@@ -243,6 +256,7 @@ function PortfolioPage() {
               <div className="sun" />
               <div className="earth" />
             </div>
+            <p className="orbit-age">{ageYears.toFixed(9)} years alive</p>
           </div>
         </section>
 
