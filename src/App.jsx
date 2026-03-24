@@ -29,6 +29,23 @@ const projectCards = [
   },
 ]
 
+const currentLearningCards = [
+  {
+    index: '01 / Language',
+    title: 'indian sign language',
+    description:
+      'Structured YouTube playlist focused on building practical Indian Sign Language vocabulary and everyday communication fluency.',
+    href: 'https://www.youtube.com/watch?v=JPV-vboWfhY&list=PLxYMaKXKMMcMgg4f47WkG7AM0bb3AyjTi',
+  },
+  {
+    index: '02 / Full-Stack',
+    title: '100xdevs',
+    description:
+      'Full-stack development coursework covering modern web engineering fundamentals, backend systems, and production-oriented application building.',
+    href: 'https://100xdevs.com/',
+  },
+]
+
 const socialLinks = [
   {
     name: 'Email',
@@ -205,6 +222,9 @@ function PortfolioPage() {
             <a className="top-nav__link" href="#projects">
               projects
             </a>
+            <a className="top-nav__link" href="#currently">
+              currently
+            </a>
             <a className="top-nav__link" href="#skills">
               skills
             </a>
@@ -341,6 +361,35 @@ function PortfolioPage() {
                     </div>
                   </>
                 ) : null}
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="content-grid" id="currently">
+          <div className="section-label-wrap">
+            <h2 className="section-label">Currently</h2>
+          </div>
+          <div className="currently-grid">
+            {currentLearningCards.map((item) => (
+              <a
+                key={item.title}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="current-card"
+              >
+                <div className="current-card__head">
+                  <span>{item.index}</span>
+                  <span className="material-symbols-outlined">north_east</span>
+                </div>
+
+                <div className="current-card__body">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+
+                <div className="current-card__glow" aria-hidden="true" />
               </a>
             ))}
           </div>
