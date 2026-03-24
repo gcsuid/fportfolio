@@ -433,18 +433,18 @@ function PortfolioPage() {
 
       <footer className="portfolio-footer">
         <div className="portfolio-footer__inner">
-          <div className="portfolio-footer__credit">2024 built by curator.</div>
-          <div className="portfolio-footer__links">
-            <a href="#" aria-label="GitHub">
-              <span className="material-symbols-outlined">hub</span>
+          <p className="portfolio-footer__note">
+            scrolled this far? You deserve a bonus, might I engross you with
+            some handpicked pieces of art,{' '}
+            <a
+              href="https://open.spotify.com/user/l6p6ltihlrolzunwkm3u5iix6?si=C4cVGWhQSH6j4TuUEHhf1w"
+              target="_blank"
+              rel="noreferrer"
+            >
+              click here
             </a>
-            <a href="#" aria-label="Layers">
-              <span className="material-symbols-outlined">layers</span>
-            </a>
-            <a href="#" aria-label="Email">
-              <span className="material-symbols-outlined">mail_outline</span>
-            </a>
-          </div>
+            .
+          </p>
         </div>
       </footer>
     </div>

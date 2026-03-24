@@ -157,8 +157,7 @@
 .status-pill,
 .section-label,
 .skills-heading,
-.technical-group__label,
-.portfolio-footer__credit {
+.technical-group__label {
   letter-spacing: 0.24em;
   text-transform: uppercase;
 }
@@ -757,34 +756,32 @@
 
 .portfolio-footer__inner {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
+  justify-content: center;
   padding-top: 3rem;
   border-top: 1px solid var(--panel-border-soft);
 }
 
-.portfolio-footer__credit {
+.portfolio-footer__note {
+  max-width: 42rem;
+  margin: 0;
   color: var(--text-soft);
-  font-size: 0.875rem;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  text-align: center;
 }
 
-.portfolio-footer__links {
-  display: flex;
-  gap: 2rem;
-}
-
-.portfolio-footer__links a {
-  color: var(--text-soft);
+.portfolio-footer__note a {
+  color: var(--text-strong);
   text-decoration: underline;
   text-decoration-color: var(--text-soft);
   text-underline-offset: 4px;
-  transition: color 200ms ease;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
 }
 
-.portfolio-footer__links a:hover,
-.portfolio-footer__links a:focus-visible {
-  color: var(--text-strong);
+.portfolio-footer__note a:hover,
+.portfolio-footer__note a:focus-visible {
+  color: var(--text-primary);
+  text-decoration-color: var(--text-primary);
 }
 
 @keyframes cursor-blink {
@@ -876,10 +873,6 @@
     grid-column: span 2;
   }
 
-  .portfolio-footer__inner {
-    flex-direction: row;
-    justify-content: space-between;
-  }
 }
 
 @media (max-width: 767px) {
