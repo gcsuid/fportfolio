@@ -243,6 +243,11 @@
   gap: 2rem;
 }
 
+.top-nav__links--inline {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .top-nav__link {
   padding-bottom: 0.25rem;
   color: var(--text-soft);
@@ -526,8 +531,8 @@
 .orbit-age {
   margin: 0;
   color: var(--text-muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -965,7 +970,6 @@
   .top-nav__links {
     display: flex;
   }
-
   .portfolio-main {
     padding-top: 0.75rem;
   }
@@ -1026,6 +1030,10 @@
   .hero-social {
     width: 2.35rem;
     height: 2.35rem;
+  }
+
+  .top-nav__links--inline {
+    gap: 1rem;
   }
 
   .about-copy__lead {

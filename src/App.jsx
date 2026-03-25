@@ -131,6 +131,7 @@ const NAV_ITEMS = [
   { id: 'projects', label: 'projects' },
   { id: 'currently', label: 'currently' },
   { id: 'skills', label: 'skills' },
+  { id: 'experience', label: 'experience', href: '#/experience', isPage: true },
 ]
 
 function getAgeInYears() {
@@ -270,9 +271,9 @@ function PortfolioPage({ theme, setTheme }) {
   }, [])
 
   useEffect(() => {
-    const sections = NAV_ITEMS.map(({ id }) => document.getElementById(id)).filter(
-      Boolean,
-    )
+    const sections = NAV_ITEMS.filter((item) => !item.isPage)
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean)
 
     if (!sections.length) {
       return undefined
@@ -305,6 +306,13 @@ function PortfolioPage({ theme, setTheme }) {
 
   const handleNavClick = (event, sectionId) => {
     event.preventDefault()
+    const navItem = NAV_ITEMS.find((item) => item.id === sectionId)
+
+    if (navItem?.isPage) {
+      window.location.hash = navItem.href.replace('#', '')
+      return
+    }
+
     const section = document.getElementById(sectionId)
 
     if (!section) {
@@ -336,7 +344,7 @@ function PortfolioPage({ theme, setTheme }) {
                 className={`top-nav__link${
                   activeSection === item.id ? ' top-nav__link--active' : ''
                 }`}
-                href={`#${item.id}`}
+                href={item.href ?? `#${item.id}`}
                 onClick={(event) => handleNavClick(event, item.id)}
               >
                 {item.label}
@@ -583,9 +591,19 @@ function ExperiencePage({ theme, setTheme }) {
     <div className={`portfolio-page theme-${theme}`}>
       <nav className="top-nav">
         <div className="top-nav__inner">
-          <a className="top-nav__link top-nav__link--active" href="#about">
-            back to home
-          </a>
+          <div className="top-nav__links top-nav__links--inline">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                className={`top-nav__link${
+                  item.id === 'experience' ? ' top-nav__link--active' : ''
+                }`}
+                href={item.isPage ? item.href : `#${item.id}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
           <button
             className="icon-button"
             aria-label={`Switch to ${isLightTheme ? 'dark' : 'light'} theme`}
