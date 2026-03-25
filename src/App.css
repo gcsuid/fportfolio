@@ -114,67 +114,11 @@
   opacity: 0.9;
 }
 
-.face-eyes {
-  position: absolute;
-  top: 37%;
-  left: 50%;
-  z-index: 1;
-  display: flex;
-  gap: 1.6rem;
-  transform: translateX(-50%);
-  opacity: 0;
-}
-
-.glasses-mask {
-  position: absolute;
-  top: 34%;
-  left: 50%;
-  z-index: 3;
-  width: 5.9rem;
-  height: 1.8rem;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(3, 3, 3, 0.94) 0%,
-      rgba(18, 18, 18, 0.96) 48%,
-      rgba(3, 3, 3, 0.94) 100%
-    );
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 12px 28px rgba(0, 0, 0, 0.28);
-  opacity: 0.92;
-}
-
-.eye {
-  width: 1.1rem;
-  height: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.65);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
-}
-
-.eye::after {
-  content: '';
-  width: 0.32rem;
-  height: 0.32rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-  animation: eye-focus 3s ease-in-out infinite;
-}
-
 .loader-panel {
   width: min(20rem, 100%);
 }
 
 .loader-terminal,
-.loader-meta,
 .preloader-brand,
 .status-pill,
 .section-label,
@@ -187,18 +131,11 @@
 .loader-terminal {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
   color: rgba(198, 198, 198, 0.8);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   text-transform: lowercase;
-}
-
-.cursor-blink {
-  width: 0.375rem;
-  height: 0.85rem;
-  margin-left: 0.35rem;
-  background: #fff;
-  animation: cursor-blink 1s step-end infinite;
 }
 
 .progress-track {
@@ -213,19 +150,11 @@
   background: rgba(255, 255, 255, 0.75);
 }
 
-.loader-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.75rem;
-  color: rgba(145, 145, 145, 0.65);
-  font-size: 0.65rem;
-}
-
 .loader-dots {
   display: flex;
   justify-content: center;
   gap: 0.45rem;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
 }
 
 .loader-dot {
@@ -883,32 +812,6 @@
 .portfolio-footer__note a:focus-visible {
   color: var(--text-primary);
   text-decoration-color: var(--text-primary);
-}
-
-@keyframes cursor-blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-}
-
-@keyframes eye-focus {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  25% {
-    transform: translateX(-1px);
-  }
-
-  75% {
-    transform: translateX(1px);
-  }
 }
 
 @keyframes loader-pulse {

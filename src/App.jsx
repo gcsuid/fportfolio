@@ -132,11 +132,6 @@ function Preloader() {
         <div className="portrait-wrap" aria-hidden="true">
           <div className="portrait-glow" />
           <div className="portrait-shell">
-            <div className="face-eyes">
-              <span className="eye" />
-              <span className="eye" />
-            </div>
-            <div className="glasses-mask" aria-hidden="true" />
             <img
               className="portrait-image"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhb95f1-9_2R7nfZNacKsl_4yvfzVljrzYEotmR4I0kNLXuzA_oCN5twJr3gpqy2c_bfdPHs7u9Cx_u740lgT7a0qE5qYe4FbvdEnKZUl9F9YHwVYFTDMahoLk0lbhpZLbc2rEkfIfbbAqdo1AHQwER3jI74zg3c0jNdpSO0UmgGARTI0tipNBCCcoXNhow0VmLwSQdO72Q6CP9OvbSjLRfnGu-JLRjA9jmiDX5BP00kzCBYrBYALTSafzimJMhgrGmm_E-a3dUEu7"
@@ -147,8 +142,7 @@ function Preloader() {
 
         <section className="loader-panel" aria-label="Portfolio loading status">
           <div className="loader-terminal">
-            <span>[system]: booting curator_core</span>
-            <span className="cursor-blink" />
+            <span>loading to know Ayush</span>
           </div>
 
           <div className="progress-track" aria-hidden="true">
@@ -156,11 +150,6 @@ function Preloader() {
               className="progress-fill"
               style={{ transform: `scaleX(${progress / 100})` }}
             />
-          </div>
-
-          <div className="loader-meta">
-            <span>ver 2.0.4_stable</span>
-            <span>{progress}%</span>
           </div>
 
           <div className="loader-dots" aria-hidden="true">
