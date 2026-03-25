@@ -47,6 +47,50 @@ const currentLearningCards = [
   },
 ]
 
+const experienceEntries = [
+  {
+    title: 'Software Engineering Trainee',
+    org: 'DRDO, Chandipur',
+    period: 'May 2025 - July 2025',
+    points: [
+      'Built a Django plus SQLite attendance portal for 200+ contractual workers with shift tracking.',
+      'Integrated Gemini API reporting with anomaly flagging, cutting manual effort by 40%.',
+      'Deployed a RAG system for cross-department document queries and reduced manual lookup work.',
+    ],
+  },
+]
+
+const voluntaryEntries = [
+  {
+    title: 'Student Body Coordinator',
+    org: 'IoT Lab, KIIT Bhubaneswar',
+    period: 'Aug 2024 - Aug 2025',
+    points: [
+      'Led a 100+ member team while coordinating projects and stakeholder communication.',
+      'Collected member feedback to improve internal processes and resolve technical roadblocks.',
+      'Tracked milestones across 8+ projects to keep delivery timelines and quality on track.',
+    ],
+  },
+  {
+    title: 'PCR Lead',
+    org: 'Enactus KIIT Bhubaneswar',
+    period: 'Jul 2024 - Apr 2025',
+    points: [
+      "Contributed to Enactus KIIT's National Cup 2024 winning team and built solutions for underserved communities.",
+      "Led the university's first SDG competition to encourage sustainable development ideas.",
+      'Helped launch Project Heritage Haven to spotlight indigenous Odia craft and community value.',
+    ],
+  },
+]
+
+const achievements = [
+  "Presented and published a research paper at ICCCNT'25 hosted by IIT Indore.",
+  'Selected for the Keploy API Fellowship and ranked in the top 0.99% of the global cohort.',
+  'Cleared Smart India Hackathon 2024 at university level among the top 45 teams nationwide.',
+  'Part of the team that won the Enactus National Cup 2024.',
+  'Authored a weekly OTV column on mobile technology and grew reader engagement by 40%.',
+]
+
 const socialLinks = [
   {
     name: 'Email',
@@ -194,9 +238,8 @@ function SocialIcon({ icon }) {
   return <span className="material-symbols-outlined">mail</span>
 }
 
-function PortfolioPage() {
+function PortfolioPage({ theme, setTheme }) {
   const [ageYears, setAgeYears] = useState(() => getAgeInYears())
-  const [theme, setTheme] = useState('dark')
   const [activeSection, setActiveSection] = useState('about')
   const [navHeight, setNavHeight] = useState(88)
   const navRef = useRef(null)
@@ -344,6 +387,9 @@ function PortfolioPage() {
                 </a>
               ))}
             </div>
+            <a className="hero-secondary-link" href="#/experience">
+              experience
+            </a>
           </div>
 
           <div className="orbit-anchor" aria-hidden="true">
@@ -352,7 +398,7 @@ function PortfolioPage() {
               <div className="sun" />
               <div className="earth" />
             </div>
-            <p className="orbit-age">{ageYears.toFixed(9)} years alive</p>
+            <p className="orbit-age">{ageYears.toFixed(9)} years around the sun</p>
           </div>
         </section>
 
@@ -376,21 +422,17 @@ function PortfolioPage() {
 
             <div className="about-cards">
               <article className="glass-card">
-                <span className="material-symbols-outlined card-icon">
-                  school
-                </span>
+                <span className="material-symbols-outlined card-icon">school</span>
                 <h3>education</h3>
                 <p>
-                  KIIT University, 2026. Computer Science graduate with a
-                  strong base in full-stack engineering, applied AI, and
-                  building systems that solve real problems.
+                  KIIT University, 2026. Computer Science graduate with a strong
+                  base in full-stack engineering, applied AI, and building systems
+                  that solve real problems.
                 </p>
               </article>
 
               <article className="glass-card">
-                <span className="material-symbols-outlined card-icon">
-                  groups
-                </span>
+                <span className="material-symbols-outlined card-icon">groups</span>
                 <h3>impact</h3>
                 <p>
                   Through Enactus KIIT, I worked on social entrepreneurship
@@ -534,8 +576,120 @@ function PortfolioPage() {
   )
 }
 
+function ExperiencePage({ theme, setTheme }) {
+  const isLightTheme = theme === 'light'
+
+  return (
+    <div className={`portfolio-page theme-${theme}`}>
+      <nav className="top-nav">
+        <div className="top-nav__inner">
+          <a className="top-nav__link top-nav__link--active" href="#about">
+            back to home
+          </a>
+          <button
+            className="icon-button"
+            aria-label={`Switch to ${isLightTheme ? 'dark' : 'light'} theme`}
+            onClick={() =>
+              setTheme((currentTheme) =>
+                currentTheme === 'dark' ? 'light' : 'dark',
+              )
+            }
+            type="button"
+          >
+            <span
+              className={`theme-toggle-icon${
+                isLightTheme ? ' theme-toggle-icon--moon' : ' theme-toggle-icon--sun'
+              }`}
+              aria-hidden="true"
+            >
+              <span className="theme-toggle-icon__core" />
+            </span>
+          </button>
+        </div>
+      </nav>
+
+      <main className="portfolio-main experience-page">
+        <section className="experience-hero">
+          <p className="experience-kicker">experience</p>
+          <h1>Work, leadership, and impact.</h1>
+          <p className="experience-intro">
+            A focused view of internships, voluntary work, and milestones that
+            shaped how I build and lead.
+          </p>
+        </section>
+
+        <section className="content-grid" id="experience">
+          <div className="section-label-wrap">
+            <h2 className="section-label">Experience</h2>
+          </div>
+          <div className="experience-stack">
+            {experienceEntries.map((entry) => (
+              <article key={entry.title} className="experience-card">
+                <div className="experience-card__header">
+                  <div>
+                    <h3>{entry.title}</h3>
+                    <p>{entry.org}</p>
+                  </div>
+                  <span>{entry.period}</span>
+                </div>
+                <ul className="experience-points">
+                  {entry.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="content-grid" id="voluntary">
+          <div className="section-label-wrap">
+            <h2 className="section-label">Voluntary</h2>
+          </div>
+          <div className="experience-stack">
+            {voluntaryEntries.map((entry) => (
+              <article key={entry.title} className="experience-card">
+                <div className="experience-card__header">
+                  <div>
+                    <h3>{entry.title}</h3>
+                    <p>{entry.org}</p>
+                  </div>
+                  <span>{entry.period}</span>
+                </div>
+                <ul className="experience-points">
+                  {entry.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+
+            <article className="experience-card experience-card--achievements">
+              <div className="experience-card__header">
+                <div>
+                  <h3>Achievements</h3>
+                  <p>Selected highlights</p>
+                </div>
+              </div>
+              <ul className="experience-points">
+                {achievements.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  )
+}
+
 function App() {
   const [loading, setLoading] = useState(true)
+  const [theme, setTheme] = useState('dark')
+  const [route, setRoute] = useState(() =>
+    window.location.hash.startsWith('#/experience') ? 'experience' : 'home',
+  )
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -547,7 +701,29 @@ function App() {
     }
   }, [])
 
-  return loading ? <Preloader /> : <PortfolioPage />
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(
+        window.location.hash.startsWith('#/experience') ? 'experience' : 'home',
+      )
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [])
+
+  if (loading) {
+    return <Preloader />
+  }
+
+  return route === 'experience' ? (
+    <ExperiencePage theme={theme} setTheme={setTheme} />
+  ) : (
+    <PortfolioPage theme={theme} setTheme={setTheme} />
+  )
 }
 
 export default App
