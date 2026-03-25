@@ -64,6 +64,8 @@ const socialLinks = [
   },
 ]
 
+const GITHUB_PROFILE_URL = 'https://github.com/gcsuid'
+
 const collaborativeSkills = [
   'Strategic Planning',
   'Team Leadership',
@@ -79,6 +81,12 @@ const technicalSkills = {
 }
 
 const BIRTH_DATE = new Date('2004-03-24T00:00:00+05:30')
+const NAV_ITEMS = [
+  { id: 'about', label: 'about' },
+  { id: 'projects', label: 'projects' },
+  { id: 'currently', label: 'currently' },
+  { id: 'skills', label: 'skills' },
+]
 
 function getAgeInYears() {
   const elapsedMs = Date.now() - BIRTH_DATE.getTime()
@@ -127,6 +135,7 @@ function Preloader() {
               <span className="eye" />
               <span className="eye" />
             </div>
+            <div className="glasses-mask" aria-hidden="true" />
             <img
               className="portrait-image"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhb95f1-9_2R7nfZNacKsl_4yvfzVljrzYEotmR4I0kNLXuzA_oCN5twJr3gpqy2c_bfdPHs7u9Cx_u740lgT7a0qE5qYe4FbvdEnKZUl9F9YHwVYFTDMahoLk0lbhpZLbc2rEkfIfbbAqdo1AHQwER3jI74zg3c0jNdpSO0UmgGARTI0tipNBCCcoXNhow0VmLwSQdO72Q6CP9OvbSjLRfnGu-JLRjA9jmiDX5BP00kzCBYrBYALTSafzimJMhgrGmm_E-a3dUEu7"
@@ -198,6 +207,7 @@ function SocialIcon({ icon }) {
 function PortfolioPage() {
   const [ageYears, setAgeYears] = useState(() => getAgeInYears())
   const [theme, setTheme] = useState('dark')
+  const [activeSection, setActiveSection] = useState('about')
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -209,25 +219,70 @@ function PortfolioPage() {
     }
   }, [])
 
+  useEffect(() => {
+    const sections = NAV_ITEMS.map(({ id }) => document.getElementById(id)).filter(
+      Boolean,
+    )
+
+    if (!sections.length) {
+      return undefined
+    }
+
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)
+
+        if (visibleEntries.length > 0) {
+          setActiveSection(visibleEntries[0].target.id)
+        }
+      },
+      {
+        rootMargin: '-88px 0px -55% 0px',
+        threshold: [0.2, 0.35, 0.5, 0.7],
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   const isLightTheme = theme === 'light'
+
+  const handleNavClick = (event, sectionId) => {
+    event.preventDefault()
+    const section = document.getElementById(sectionId)
+
+    if (!section) {
+      return
+    }
+
+    setActiveSection(sectionId)
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.history.replaceState(null, '', `#${sectionId}`)
+  }
 
   return (
     <div className={`portfolio-page theme-${theme}`}>
       <nav className="top-nav">
         <div className="top-nav__inner">
           <div className="top-nav__links">
-            <a className="top-nav__link top-nav__link--active" href="#about">
-              about
-            </a>
-            <a className="top-nav__link" href="#projects">
-              projects
-            </a>
-            <a className="top-nav__link" href="#currently">
-              currently
-            </a>
-            <a className="top-nav__link" href="#skills">
-              skills
-            </a>
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                className={`top-nav__link${
+                  activeSection === item.id ? ' top-nav__link--active' : ''
+                }`}
+                href={`#${item.id}`}
+                onClick={(event) => handleNavClick(event, item.id)}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
           <button
             className="icon-button"
@@ -239,8 +294,13 @@ function PortfolioPage() {
             }
             type="button"
           >
-            <span className="material-symbols-outlined">
-              {isLightTheme ? 'dark_mode' : 'wb_sunny'}
+            <span
+              className={`theme-toggle-icon${
+                isLightTheme ? ' theme-toggle-icon--moon' : ' theme-toggle-icon--sun'
+              }`}
+              aria-hidden="true"
+            >
+              <span className="theme-toggle-icon__core" />
             </span>
           </button>
         </div>
@@ -250,7 +310,7 @@ function PortfolioPage() {
         <section className="hero-section">
           <div className="hero-copy">
             <h1>
-              Howdy! <span className="hero-name-accent">Ayush</span>
+              ପ୍ରଣାମ! <span className="hero-name-accent">Ayush</span>
               <span>here.</span>
             </h1>
             <div className="hero-socials">
@@ -328,7 +388,14 @@ function PortfolioPage() {
 
         <section className="content-grid" id="projects">
           <div className="section-label-wrap">
-            <h2 className="section-label">Projects</h2>
+            <a
+              className="section-label section-label--link"
+              href={GITHUB_PROFILE_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Projects
+            </a>
           </div>
           <div className="projects-grid">
             {projectCards.map((project) => (
