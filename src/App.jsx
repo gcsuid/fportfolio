@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const LOADER_DURATION_MS = 3000
+const SECTION_SCROLL_GAP = 18
 
 const projectCards = [
   {
@@ -208,6 +209,8 @@ function PortfolioPage() {
   const [ageYears, setAgeYears] = useState(() => getAgeInYears())
   const [theme, setTheme] = useState('dark')
   const [activeSection, setActiveSection] = useState('about')
+  const [navHeight, setNavHeight] = useState(88)
+  const navRef = useRef(null)
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -216,6 +219,21 @@ function PortfolioPage() {
 
     return () => {
       window.clearInterval(intervalId)
+    }
+  }, [])
+
+  useEffect(() => {
+    const updateNavHeight = () => {
+      const nextHeight = navRef.current?.offsetHeight ?? 88
+      setNavHeight(nextHeight)
+      document.documentElement.style.setProperty('--nav-height', `${nextHeight}px`)
+    }
+
+    updateNavHeight()
+    window.addEventListener('resize', updateNavHeight)
+
+    return () => {
+      window.removeEventListener('resize', updateNavHeight)
     }
   }, [])
 
@@ -239,7 +257,7 @@ function PortfolioPage() {
         }
       },
       {
-        rootMargin: '-88px 0px -55% 0px',
+        rootMargin: `-${navHeight + SECTION_SCROLL_GAP}px 0px -55% 0px`,
         threshold: [0.2, 0.35, 0.5, 0.7],
       },
     )
@@ -249,7 +267,7 @@ function PortfolioPage() {
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, [navHeight])
 
   const isLightTheme = theme === 'light'
 
@@ -261,14 +279,23 @@ function PortfolioPage() {
       return
     }
 
+    const nextTop =
+      section.getBoundingClientRect().top +
+      window.scrollY -
+      navHeight -
+      SECTION_SCROLL_GAP
+
     setActiveSection(sectionId)
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.scrollTo({
+      top: Math.max(nextTop, 0),
+      behavior: 'smooth',
+    })
     window.history.replaceState(null, '', `#${sectionId}`)
   }
 
   return (
     <div className={`portfolio-page theme-${theme}`}>
-      <nav className="top-nav">
+      <nav className="top-nav" ref={navRef}>
         <div className="top-nav__inner">
           <div className="top-nav__links">
             {NAV_ITEMS.map((item) => (

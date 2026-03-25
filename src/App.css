@@ -129,7 +129,7 @@
   position: absolute;
   top: 34%;
   left: 50%;
-  z-index: 1;
+  z-index: 3;
   width: 5.9rem;
   height: 1.8rem;
   transform: translateX(-50%);
@@ -589,8 +589,7 @@
 .content-grid {
   display: grid;
   gap: 3rem;
-  padding-top: 3rem;
-  scroll-margin-top: calc(var(--nav-height) + 1.25rem);
+  margin-top: 3rem;
 }
 
 .section-label-wrap {
@@ -1048,7 +1047,7 @@
 
   .content-grid {
     gap: 1.75rem;
-    padding-top: 2rem;
+    margin-top: 2rem;
   }
 
   .about-cards,
